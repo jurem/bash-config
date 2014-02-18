@@ -19,14 +19,14 @@ alias mvf='mv'
 
 
 function sshfri {
-    h=${1:-lalg}
-    u=${2:-jure}
-    a=$3
-    ssh $u@$h.fri.uni-lj.si $a
+    u=${1:-jure}
+    h=${2:-lalg}
+	shift 2
+    ssh $u@$h.fri.uni-lj.si "$@"
 
 }
-alias sshlalg='sshfri'
-alias sshlalgec='sshfri lalgec'
+alias sshlalg='sshfri jure lalg'
+alias sshlalgec='sshfri jure lalgec'
 
 
 function edit {
