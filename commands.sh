@@ -18,18 +18,35 @@ alias mv='mv -i'
 alias mvf='mv'
 
 
-function sshfri {
-    u=${1:-jure}
-    h=${2:-lalg}
-	shift 2
-    ssh $u@$h.fri.uni-lj.si "$@"
-
-}
-alias sshlalg='sshfri jure lalg'
-alias sshlalgec='sshfri jure lalgec'
-
-
 function edit {
-    /Applications/Design/Sublime\ Text\ 2.app/Contents/MacOS/Sublime\ Text\ 2 &
+    # Mac OS X specific
+    open -a "Sublime Text 2" "$@"
 }
 
+
+function cleantex {
+    rm *~
+    rm *.backup
+
+    rm *.aux
+    rm *.log
+    rm *.bbl
+    rm *.blg
+    rm *.toc
+
+    rm *.nav
+    rm *.out
+    rm *.snm
+}
+
+
+function hidden {
+    [[ "$1" = "on" ]] && v=TRUE || v=FALSE
+    defaults write com.apple.finder AppleShowAllFiles $v
+    killall Finder
+}
+
+
+function delete_recent {
+    defaults -currentHost delete -g NSNavRecentPlaces
+}
