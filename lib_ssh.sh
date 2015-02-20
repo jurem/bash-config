@@ -37,9 +37,8 @@ function copykey {
     pushd . >/dev/null
     cd ~/.ssh
 	test -f id_rsa.pub || ssh-keygen -t rsa -N '' -f id_rsa
-    sc $1 $2 .ssh id_rsa.pub
-	ss $1 $2 "cat .ssh/id_rsa.pub >> .ssh/authorized_keys"
-	ss $1 $2 "rm .ssh/id_rsa.pub"
+    sc $1 $2 . id_rsa.pub
+	ss $1 $2 "mkdir -p .ssh && cat id_rsa.pub >> .ssh/authorized_keys; rm id_rsa.pub"
 	popd >/dev/null
 }
 
